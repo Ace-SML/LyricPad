@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.setAttribute('data-theme', theme);
   btnTheme.textContent = theme === 'dark' ? 'Light' : 'Dark';
 
-  const sanitize = str => str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const sanitize = str => str.replace(/<div>/g, '').replace(/>/g, '');
 
   const renderList = () => {
     songList.innerHTML = '';
