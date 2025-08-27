@@ -107,8 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('font-size').addEventListener('change', e => {
-    editorArea.style.fontSize = `${e.target.value}px`;
-  });
+  const size = parseInt(e.target.value);
+  editorArea.style.fontSize = `${size}px`;
+
+  // Adjust CSS variables dynamically
+  document.documentElement.style.setProperty('--editor-font-size', `${size}px`);
+  document.documentElement.style.setProperty('--editor-line-height', `${size + 8}px`);
+});
+
 
   btnExport.addEventListener('click', () => {
     const format = exportFormat.value;
