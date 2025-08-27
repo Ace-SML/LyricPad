@@ -190,7 +190,7 @@ main {
     to bottom,
     transparent,
     transparent calc(var(--editor-line-height) - 1px),
-    rgba(255,255,255,0.05) var(--editor-line-height)
+    rgba(255, 255, 255, 0.329) var(--editor-line-height)
   );
   background-size: 100% var(--editor-line-height);
   font-size: var(--editor-font-size);
