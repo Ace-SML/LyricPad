@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LyricPad - Songs Notepad</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="header">
+        <div>
+          <h1 class="app-title">LyricPad</h1>
+          <p class="app-sub">Your personal lyric library</p>
+        </div>
+        <div class="controls">
+          <button class="btn" id="btn-new">New</button>
+          <button class="btn secondary" id="btn-theme">Light</button>
+        </div>
+      </div>
+      <div class="search">
+        <input type="text" id="search-input" placeholder="Search lyrics..." />
+      </div>
+      <div class="song-list" id="song-list"></div>
+    </aside>
+
+    <!-- Editor -->
+    <section class="editor hidden" id="editor">
+      <div class="ribbon">
+        <div class="ribbon-top">
+          <div class="toolbar">
+            <button class="toolbtn" data-action="bold"><b>B</b></button>
+            <button class="toolbtn" data-action="italic"><i>I</i></button>
+            <button class="toolbtn" data-action="underline"><u>U</u></button>
+            <select class="select" id="font-size">
+              <option value="16">Normal</option>
+              <option value="18">Large</option>
+              <option value="22">Larger</option>
+            </select>
+            <button class="toolbtn" data-action="undo">↺ Undo</button>
+            <button class="toolbtn" data-action="redo">↻ Redo</button>
+            <button class="toolbtn" data-action="copy">📋 Copy</button>
+          </div>
+          <div>
+            <select class="select" id="export-format">
+              <option value="txt">Export as TXT</option>
+              <option value="doc">Export as DOC</option>
+            </select>
+            <button class="btn small" id="btn-export">Export</button>
+          </div>
+        </div>
+      </div>
+      <div class="title-row">
+        <input type="text" class="title-input" id="song-title" placeholder="Song title..." />
+      </div>
+      <div class="editor-area" id="editor-area" contenteditable="true"></div>
+      <div class="editor-footer">
+        <div class="meta">
+          <span id="word-count">0 words</span>
+          <span id="char-count">0 chars</span>
+        </div>
+        <span class="notice">Autosaved</span>
+        <button class="btn" id="btn-close">Close</button>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
