@@ -12,10 +12,10 @@
 
 [data-theme="light"] {
   --bg: #f7f8fb;
-  --panel: #ffffff;
+  --panel: #d1d1d1;
   --text: #071124;
-  --muted: #555;
-  --border: #ddd;
+  --muted: #685656;
+  --border: #6f6d7c;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -200,6 +200,7 @@ main {
 /* COMMON STYLES */
 .editor-area {
   flex: 1;
+  margin-top: 12px;
   border-radius: 8px;
   border: 1px solid var(--border);
   min-height: 300px;
