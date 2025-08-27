@@ -6,6 +6,8 @@
   --accent: #f1be32;
   --border: #1f2937;
   --glass: rgba(255,255,255,0.04);
+  --editor-font-size: 16px;
+  --editor-line-height: 24px;
 }
 
 [data-theme="light"] {
@@ -161,14 +163,48 @@ main {
   color: var(--text);
 }
 
+/* LIGHT THEME NOTEBOOK EFFECT */
+[data-theme="light"] .editor-area {
+  background-color: #fffaf0;
+  background-image: 
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(var(--editor-line-height) - 1px),
+      #dcdcdc var(--editor-line-height)
+    ),
+    linear-gradient(to right, #ff6b6b 50px, transparent 50px);
+  background-size: 100% var(--editor-line-height);
+  font-family: 'Courier New', monospace;
+  font-size: var(--editor-font-size);
+  line-height: var(--editor-line-height);
+  padding: var(--editor-line-height) 20px 16px 70px; /* Align with margin line */
+  color: #333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* DARK THEME (Minimal lines) */
+[data-theme="dark"] .editor-area {
+  background-color: var(--bg);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent calc(var(--editor-line-height) - 1px),
+    rgba(255,255,255,0.05) var(--editor-line-height)
+  );
+  background-size: 100% var(--editor-line-height);
+  font-size: var(--editor-font-size);
+  line-height: var(--editor-line-height);
+}
+
+/* COMMON STYLES */
 .editor-area {
   flex: 1;
-  padding: 16px;
   border-radius: 8px;
   border: 1px solid var(--border);
   min-height: 300px;
-  background: var(--bg);
-  overflow-wrap: break-word; /* Ensures long words break */
+  max-height: 250px;
+  overflow-wrap: break-word;
   white-space: pre-wrap;
   overflow-y: auto;
 }
