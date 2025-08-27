@@ -55,35 +55,51 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   btnNew.addEventListener('click', () => {
-    currentId = Date.now().toString();
-    songs.push({ id: currentId, title: 'Untitled', content: '' });
-    saveSongs();
-    openSong(currentId);
-    editor.style.visibility = "visible";
-  });
+  currentId = null; // No ID yet
+  titleInput.value = 'Untitled';
+  editorArea.innerHTML = '';
+  editor.classList.remove('hidden');
+  editor.style.visibility = "visible";
+});
+
 
   songList.addEventListener('click', e => {
     if (e.target.tagName === 'BUTTON') openSong(e.target.dataset.id);
     editor.style.visibility = "visible";
   });
 
-  titleInput.addEventListener('input', () => {
-    const song = songs.find(s => s.id === currentId);
-    if (song) {
-      song.title = titleInput.value;
+  const ensureSongExists = () => {
+  if (!currentId) {
+    // Only create if there's real content
+    const text = editorArea.innerText.trim();
+    const title = titleInput.value.trim();
+    if (text || title !== 'Untitled') {
+      currentId = Date.now().toString();
+      songs.push({ id: currentId, title: titleInput.value, content: editorArea.innerHTML });
       saveSongs();
-      renderList();
     }
-  });
+  }
+};
 
-  editorArea.addEventListener('input', () => {
+titleInput.addEventListener('input', () => {
+  ensureSongExists();
+  if (currentId) {
     const song = songs.find(s => s.id === currentId);
-    if (song) {
-      song.content = editorArea.innerHTML;
-      saveSongs();
-    }
-    updateCounts();
-  });
+    song.title = titleInput.value;
+    saveSongs();
+    renderList();
+  }
+});
+
+editorArea.addEventListener('input', () => {
+  ensureSongExists();
+  if (currentId) {
+    const song = songs.find(s => s.id === currentId);
+    song.content = editorArea.innerHTML;
+    saveSongs();
+  }
+  updateCounts();
+});
 
   btnTheme.addEventListener('click', () => {
     theme = theme === 'dark' ? 'light' : 'dark';
