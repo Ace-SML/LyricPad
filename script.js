@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="song-preview">${sanitize(song.content).slice(0,12)}...</div>
         </div>
         <div>
-        <button class="btn small" data-id="${song.id}">Open</button>
-        <button class="btn small" data-id="${song.id}">Delete</button>
+        <button class="btn small open-btn" data-id="${song.id}">Open</button>
+        <button class="btn small delete-btn" data-id="${song.id}">Delete</button>
         </div>`;
         songList.appendChild(div);
       });
@@ -67,9 +67,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   songList.addEventListener('click', e => {
-    if (e.target.tagName === 'BUTTON') openSong(e.target.dataset.id);
+  if (e.target.classList.contains('open-btn')) {
+    openSong(e.target.dataset.id);
     editor.style.visibility = "visible";
-  });
+  } else if (e.target.classList.contains('delete-btn')) {
+  const id = e.target.dataset.id;
+  if (confirm('Are you sure you want to delete this song?')) {
+    songs = songs.filter(s => s.id !== id);
+    saveSongs();
+    renderList();
+    if (currentId === id) {
+      editor.style.visibility = "hidden";
+      currentId = null;
+    }
+  }
+}
+});
+
 
   const ensureSongExists = () => {
   if (!currentId) {
