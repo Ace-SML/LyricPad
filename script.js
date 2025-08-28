@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const div = document.createElement('div');
         div.className = 'song-item';
         div.innerHTML = `<div>
-          <div class="song-title">${sanitize(song.title)}</div>
-          <div class="song-preview">${sanitize(song.content).slice(0,15)}...</div>
+          <div class="song-title">${sanitize(song.title).slice(0,15)}</div>
+          <div class="song-preview">${sanitize(song.content).slice(0,12)}...</div>
         </div>
         <div>
         <button class="btn small" data-id="${song.id}">Open</button>

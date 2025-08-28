@@ -81,6 +81,7 @@ main {
   border: 2px solid #f5b84d;
   color: #08202a;
   padding: 8px 10px;
+  margin-top: 2px;
   border-radius: 7px;
   font-weight: bold;
 }
